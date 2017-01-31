@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="requester">
+    <output-path>$PROJECT_DIR$/out/artifacts/requester</output-path>
+    <root id="root">
+      <element id="archive" name="requester.jar">
+        <element id="module-output" name="requester" />
+      </element>
+    </root>
+  </artifact>
+</component>
