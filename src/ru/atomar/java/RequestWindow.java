@@ -84,7 +84,7 @@ public class RequestWindow {
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                mContent.clear();
+                mOutput.clear();
             }
         });
         hBox.getChildren().add(button);
