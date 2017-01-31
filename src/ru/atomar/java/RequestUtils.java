@@ -27,7 +27,8 @@ public class RequestUtils {
                     "Host: " + host + "\n" +
                     "Content-Type: application/x-www-form-urlencoded\n" +
                     "Content-Length: " + String.valueOf(params.length()) + "\n" +
-                    "\n";
+                    "\n" +
+                    params;
 
             result.append("======================= REQUEST =======================\n");
             result.append(request);
@@ -35,7 +36,7 @@ public class RequestUtils {
             out.write(request);
             out.flush();
 
-            result.append("======================= RESPONSE =======================\n");
+            result.append("\n======================= RESPONSE =======================\n");
             while ((line = in.readLine()) != null) {
                 result.append(line);
                 result.append('\n');
