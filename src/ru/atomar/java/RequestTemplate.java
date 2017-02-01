@@ -37,7 +37,7 @@ public class RequestTemplate {
     private void load() {
         BufferedReader reader = null;
         try {
-            File fsFile = new File(name + ((name.endsWith(EXTENTION))?"":EXTENTION));
+            File fsFile = new File(name + ((name.endsWith(EXTENTION)) ? "" : EXTENTION));
             if (!fsFile.exists()) {
                 name = "default";
                 host = "localhost";
@@ -79,7 +79,7 @@ public class RequestTemplate {
     public void save() {
         BufferedWriter writer = null;
         try {
-            File fsFile = new File(name + ((name.endsWith(EXTENTION))?"":EXTENTION));
+            File fsFile = new File(name + ((name.endsWith(EXTENTION)) ? "" : EXTENTION));
 
             writer = new BufferedWriter(new FileWriter(fsFile));
             writer.write(host);
@@ -114,4 +114,9 @@ public class RequestTemplate {
 
     }
 
+    public void delete() {
+        File fsFile = new File(name + ((name.endsWith(EXTENTION)) ? "" : EXTENTION));
+        if (fsFile.exists())
+            fsFile.delete();
+    }
 }

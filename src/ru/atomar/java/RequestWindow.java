@@ -2,7 +2,6 @@ package ru.atomar.java;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -40,13 +39,14 @@ public class RequestWindow {
         Scene scene = new Scene(mainPane);
 
         VBox vBox = new VBox();
-        vBox.setPadding(new Insets(4, 4, 4, 4));
+        vBox.setPadding(new Insets(8, 8, 8, 8));
         HBox hBox;
         Label label;
         Button button;
 
 
         hBox = new HBox();
+        hBox.setSpacing(16);
         label = new Label();
         label.setText("Host:");
         mUrl = new TextField();
@@ -64,10 +64,12 @@ public class RequestWindow {
         label = new Label();
         label.setText("Content:");
         mContent = new TextArea();
-        mContent.setPrefSize(800, 60);
+        mContent.setPrefSize(800, 80);
+        mContent.setWrapText(true);
         vBox.getChildren().addAll(label, mContent);
 
         hBox = new HBox();
+        hBox.setSpacing(16);
         hBox.setPadding(new Insets(4, 4, 4, 4));
         Button sendButton = new Button("Send");
         sendButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -99,15 +101,17 @@ public class RequestWindow {
         mainPane.setCenter(vBox);
 
         // Templates
-        vBox = new VBox();
-        vBox.setPadding(new Insets(4, 4, 26, 4));
+        hBox = new HBox();
+        hBox.setSpacing(16);
+        hBox.setPadding(new Insets(16, 8, 16, 8));
+        hBox.setStyle("-fx-background-color: #e0e0e0;");
 
         loadTemplate("default");
-        mTemplateCB = buildTemplateList("");
-        vBox.getChildren().add(mTemplateCB);
-
-        hBox = new HBox();
-        vBox.getChildren().add(hBox);
+        mTemplateCB = new ComboBox<String>();
+        mTemplateCB.setPrefWidth(400);
+        mTemplateCB.setEditable(true);
+        hBox.getChildren().add(mTemplateCB);
+        refreshTemplateList("");
 
         button = new Button("Load");
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -135,8 +139,21 @@ public class RequestWindow {
         });
         hBox.getChildren().add(button);
 
+        button = new Button("Delete");
+        button.setPrefWidth(50);
+        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String val = mTemplateCB.getValue();
+                if (!val.endsWith(RequestTemplate.EXTENTION))
+                    val = val + RequestTemplate.EXTENTION;
+                (new RequestTemplate(val)).delete();
+            }
+        });
+        hBox.getChildren().add(button);
 
-        mainPane.setTop(vBox);
+
+        mainPane.setTop(hBox);
 
         mStage = new Stage();
         mStage.setScene(scene);
@@ -145,25 +162,16 @@ public class RequestWindow {
         mStage.show();
     }
 
-    private ComboBox<String> buildTemplateList(final String current) {
+    private void refreshTemplateList(final String current) {
         final ObservableList olist = FXCollections.observableArrayList(RequestTemplate.getTemplateList());
         olist.add(0, "default" + RequestTemplate.EXTENTION);
-        final ComboBox<String> cb;
-        if (mTemplateCB == null)
-            cb = new ComboBox<String>(olist);
-        else {
-            cb = mTemplateCB;
-            cb.setItems(olist);
-        }
-        cb.setPrefWidth(200);
-        cb.setEditable(true);
+        mTemplateCB = this.mTemplateCB;
+        mTemplateCB.setItems(olist);
 
         if (!current.equals(""))
-            cb.setValue(current);
+            mTemplateCB.setValue(current);
         else
-            cb.setValue("default" + RequestTemplate.EXTENTION);
-
-        return cb;
+            mTemplateCB.setValue("default" + RequestTemplate.EXTENTION);
     }
 
     private void loadTemplate(String name) {
@@ -173,10 +181,13 @@ public class RequestWindow {
         mContent.setText(mTemplate.params);
     }
 
+    /**
+     * @param name
+     */
     private void saveTemplate(String name) {
         mTemplate = new RequestTemplate(name, mUrl.getText(), mFile.getText(), mContent.getText());
         mTemplate.save();
-        mTemplateCB = buildTemplateList(name);
+        refreshTemplateList(name);
     }
 
 }
