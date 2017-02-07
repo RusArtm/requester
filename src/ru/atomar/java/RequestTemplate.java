@@ -14,6 +14,7 @@ public class RequestTemplate {
     public String host;
     public String file;
     public String auth;
+    public String contentType;
     public String payload;
 
     /**
@@ -27,11 +28,12 @@ public class RequestTemplate {
         load();
     }
 
-    public RequestTemplate(String name, String host, String auth, String file, String payload) {
+    public RequestTemplate(String name, String host, String auth, String file, String contentType, String payload) {
         this.name = name;
         this.host = host;
         this.auth = auth;
         this.file = file;
+        this.contentType = contentType;
         this.payload = payload;
     }
 
@@ -44,6 +46,7 @@ public class RequestTemplate {
                 auth = "";
                 host = "localhost";
                 file = "/";
+                contentType = "application/x-www-form-urlencoded";
                 payload = "";
                 return;
             }
@@ -62,6 +65,8 @@ public class RequestTemplate {
                     auth = line;
                 else if (ind == 2)
                     file = line;
+                else if (ind == 3)
+                    contentType = line;
                 else
                     payload = payload.concat(line);
 
@@ -91,6 +96,8 @@ public class RequestTemplate {
             writer.write(auth);
             writer.write('\n');
             writer.write(file);
+            writer.write('\n');
+            writer.write(contentType);
             writer.write('\n');
             writer.write(payload);
             writer.write('\n');

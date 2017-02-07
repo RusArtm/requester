@@ -21,15 +21,17 @@ public class AsyncRequestSender extends Thread {
     String host;
     String auth;
     String file;
+    String contentType;
     String payload;
 
-    AsyncRequestSender(String host, String auth, String file, String payload, RequestListener listener) {
+    AsyncRequestSender(String host, String auth, String file, String contentType, String payload, RequestListener listener) {
         super();
         this.listener = listener;
 
         this.host = host;
         this.auth = auth;
         this.file = file;
+        this.contentType = contentType;
         this.payload = payload;
     }
 
@@ -48,8 +50,8 @@ public class AsyncRequestSender extends Thread {
 
             String request = "POST " + file + " HTTP/1.0 \n" +
                     "Host: " + host + "\n" +
-                    (auth == "" ? "" : "Authorization: " + auth + "\n") +
-                    "Content-Type: application/json\n" + //application/x-www-form-urlencoded\n" +
+                    (auth.length() == 0 ? "" : "Authorization: " + auth + "\n") +
+                    "Content-Type: " + contentType + "\n" +
                     "Content-Length: " + String.valueOf(payload.length()) + "\n" +
                     "\n" +
                     payload;

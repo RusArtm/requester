@@ -22,6 +22,7 @@ public class RequestWindow {
     TextField mUrl;
     TextField mFile;
     TextField mAuth;
+    ComboBox<String> mContentType;
     TextArea mContent;
     RequestTemplate mTemplate;
     ComboBox<String> mTemplateCB;
@@ -75,6 +76,23 @@ public class RequestWindow {
         hBox.getChildren().addAll(label, mAuth);
         vBox.getChildren().add(hBox);
 
+
+        hBox = new HBox();
+        hBox.setSpacing(16);
+        hBox.setPadding(new Insets(4, 4, 4, 4));
+        label = new Label();
+        label.setText("Content-type:");
+        ObservableList<String> types =
+                FXCollections.observableArrayList(
+                        "application/json",
+                        "application/x-www-form-urlencoded"
+                );
+        mContentType = new ComboBox<String>(types);
+        mContentType.setPrefWidth(300);
+        mContentType.setEditable(true);
+        hBox.getChildren().addAll(label, mContentType);
+        vBox.getChildren().add(hBox);
+
         label = new Label();
         label.setText("Content:");
         mContent = new TextArea();
@@ -89,7 +107,7 @@ public class RequestWindow {
         sendButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                AsyncRequestSender sender = new AsyncRequestSender(mUrl.getText(), mAuth.getText(), mFile.getText(), mContent.getText(), senderListener);
+                AsyncRequestSender sender = new AsyncRequestSender(mUrl.getText(), mAuth.getText(), mFile.getText(), mContentType.getValue(), mContent.getText(), senderListener);
                 sender.start();
             }
         });
@@ -192,6 +210,7 @@ public class RequestWindow {
         mUrl.setText(mTemplate.host);
         mAuth.setText(mTemplate.auth);
         mFile.setText(mTemplate.file);
+        mContentType.setValue(mTemplate.contentType);
         mContent.setText(mTemplate.payload);
     }
 
@@ -199,7 +218,7 @@ public class RequestWindow {
      * @param name
      */
     private void saveTemplate(String name) {
-        mTemplate = new RequestTemplate(name, mUrl.getText(), mAuth.getText(), mFile.getText(), mContent.getText());
+        mTemplate = new RequestTemplate(name, mUrl.getText(), mAuth.getText(), mFile.getText(), mContentType.getValue(), mContent.getText());
         mTemplate.save();
         refreshTemplateList(name);
     }
