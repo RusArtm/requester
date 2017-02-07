@@ -21,6 +21,7 @@ public class RequestWindow {
     TextArea mOutput;
     TextField mUrl;
     TextField mFile;
+    TextField mAuth;
     TextArea mContent;
     RequestTemplate mTemplate;
     ComboBox<String> mTemplateCB;
@@ -47,18 +48,31 @@ public class RequestWindow {
 
         hBox = new HBox();
         hBox.setSpacing(16);
+
         label = new Label();
         label.setText("Host:");
         mUrl = new TextField();
         mUrl.setText("localhost");
         mUrl.setPrefWidth(150);
         hBox.getChildren().addAll(label, mUrl);
+
         label = new Label();
         label.setText("Res:");
         mFile = new TextField();
         mFile.setText("/");
         mFile.setPrefWidth(400);
         hBox.getChildren().addAll(label, mFile);
+        vBox.getChildren().add(hBox);
+
+        hBox = new HBox();
+        hBox.setSpacing(16);
+        hBox.setPadding(new Insets(4, 4, 4, 4));
+        label = new Label();
+        label.setText("Header auth:");
+        mAuth = new TextField();
+        mAuth.setText("");
+        mAuth.setPrefWidth(560);
+        hBox.getChildren().addAll(label, mAuth);
         vBox.getChildren().add(hBox);
 
         label = new Label();
@@ -75,7 +89,7 @@ public class RequestWindow {
         sendButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                AsyncRequestSender sender = new AsyncRequestSender(mUrl.getText(), mFile.getText(), mContent.getText(), senderListener);
+                AsyncRequestSender sender = new AsyncRequestSender(mUrl.getText(), mAuth.getText(), mFile.getText(), mContent.getText(), senderListener);
                 sender.start();
             }
         });
@@ -165,7 +179,6 @@ public class RequestWindow {
     private void refreshTemplateList(final String current) {
         final ObservableList olist = FXCollections.observableArrayList(RequestTemplate.getTemplateList());
         olist.add(0, "default" + RequestTemplate.EXTENTION);
-        mTemplateCB = this.mTemplateCB;
         mTemplateCB.setItems(olist);
 
         if (!current.equals(""))
@@ -177,15 +190,16 @@ public class RequestWindow {
     private void loadTemplate(String name) {
         mTemplate = new RequestTemplate(name);
         mUrl.setText(mTemplate.host);
+        mAuth.setText(mTemplate.auth);
         mFile.setText(mTemplate.file);
-        mContent.setText(mTemplate.params);
+        mContent.setText(mTemplate.payload);
     }
 
     /**
      * @param name
      */
     private void saveTemplate(String name) {
-        mTemplate = new RequestTemplate(name, mUrl.getText(), mFile.getText(), mContent.getText());
+        mTemplate = new RequestTemplate(name, mUrl.getText(), mAuth.getText(), mFile.getText(), mContent.getText());
         mTemplate.save();
         refreshTemplateList(name);
     }

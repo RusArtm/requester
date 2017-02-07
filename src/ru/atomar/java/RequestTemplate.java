@@ -2,7 +2,6 @@ package ru.atomar.java;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by RusAr on 31.01.2017.
@@ -14,7 +13,8 @@ public class RequestTemplate {
     public String name;
     public String host;
     public String file;
-    public String params;
+    public String auth;
+    public String payload;
 
     /**
      * Use this constructor to load request template from file name.rqt
@@ -27,11 +27,12 @@ public class RequestTemplate {
         load();
     }
 
-    public RequestTemplate(String name, String host, String file, String params) {
+    public RequestTemplate(String name, String host, String auth, String file, String payload) {
         this.name = name;
         this.host = host;
+        this.auth = auth;
         this.file = file;
-        this.params = params;
+        this.payload = payload;
     }
 
     private void load() {
@@ -40,9 +41,10 @@ public class RequestTemplate {
             File fsFile = new File(name + ((name.endsWith(EXTENTION)) ? "" : EXTENTION));
             if (!fsFile.exists()) {
                 name = "default";
+                auth = "";
                 host = "localhost";
-                file = "//";
-                params = "";
+                file = "/";
+                payload = "";
                 return;
             }
 
@@ -52,14 +54,16 @@ public class RequestTemplate {
 
             int ind = 0;
 
-            params = "";
+            payload = "";
             while ((line = reader.readLine()) != null) {
                 if (ind == 0)
                     host = line;
                 else if (ind == 1)
+                    auth = line;
+                else if (ind == 2)
                     file = line;
                 else
-                    params = params.concat(line);
+                    payload = payload.concat(line);
 
                 ind++;
             }
@@ -84,9 +88,11 @@ public class RequestTemplate {
             writer = new BufferedWriter(new FileWriter(fsFile));
             writer.write(host);
             writer.write('\n');
+            writer.write(auth);
+            writer.write('\n');
             writer.write(file);
             writer.write('\n');
-            writer.write(params);
+            writer.write(payload);
             writer.write('\n');
         } catch (Exception e) {
             e.printStackTrace();
