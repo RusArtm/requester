@@ -49,7 +49,7 @@ public class AsyncRequestSender extends Thread {
             String request = "POST " + file + " HTTP/1.0 \n" +
                     "Host: " + host + "\n" +
                     (auth == "" ? "" : "Authorization: " + auth + "\n") +
-                    "Content-Type: application/x-www-form-urlencoded\n" +
+                    "Content-Type: application/json\n" + //application/x-www-form-urlencoded\n" +
                     "Content-Length: " + String.valueOf(payload.length()) + "\n" +
                     "\n" +
                     payload;
