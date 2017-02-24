@@ -71,13 +71,12 @@ public class AsyncRequestSender extends Thread {
             in.close();
             socket.close();
 
-            sendLine("======================= DONE =======================");
-
         } catch (IOException e) {
             sendLine("======================= ERROR =======================");
             sendLine(e.toString());
         }
-        sendLine("======================= ==== =======================");
+        sendLine("======================= DONE =======================");
+        sendLine("");
     }
 
     private void sendLine(final String line) {

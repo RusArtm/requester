@@ -61,7 +61,7 @@ public class RequestWindow {
         label.setText("Res:");
         mFile = new TextField();
         mFile.setText("/");
-        mFile.setPrefWidth(400);
+        mFile.setPrefWidth(561);
         hBox.getChildren().addAll(label, mFile);
         vBox.getChildren().add(hBox);
 
@@ -72,7 +72,7 @@ public class RequestWindow {
         label.setText("Header auth:");
         mAuth = new TextField();
         mAuth.setText("");
-        mAuth.setPrefWidth(560);
+        mAuth.setPrefWidth(720);
         hBox.getChildren().addAll(label, mAuth);
         vBox.getChildren().add(hBox);
 
@@ -121,6 +121,7 @@ public class RequestWindow {
                 mOutput.clear();
             }
         });
+        button.setPadding(new Insets(4, 4, 4, 4));
         hBox.getChildren().add(button);
         vBox.getChildren().add(hBox);
 
@@ -172,7 +173,7 @@ public class RequestWindow {
         hBox.getChildren().add(button);
 
         button = new Button("Delete");
-        button.setPrefWidth(50);
+        button.setPrefWidth(60);
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -180,6 +181,7 @@ public class RequestWindow {
                 if (!val.endsWith(RequestTemplate.EXTENTION))
                     val = val + RequestTemplate.EXTENTION;
                 (new RequestTemplate(val)).delete();
+                refreshTemplateList("");
             }
         });
         hBox.getChildren().add(button);
@@ -190,6 +192,7 @@ public class RequestWindow {
         mStage = new Stage();
         mStage.setScene(scene);
         mStage.setTitle("Requester. Send HTTP 1 Request easily.");
+        mStage.setMinWidth(860);
 
         mStage.show();
     }
