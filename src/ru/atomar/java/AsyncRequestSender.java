@@ -2,6 +2,8 @@ package ru.atomar.java;
 
 import com.sun.glass.ui.Application;
 
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,16 +20,18 @@ public class AsyncRequestSender extends Thread {
     }
 
     RequestListener listener;
+    boolean secure;
     String host;
     String auth;
     String file;
     String contentType;
     String payload;
 
-    AsyncRequestSender(String host, String auth, String file, String contentType, String payload, RequestListener listener) {
+    AsyncRequestSender(boolean secure, String host, String auth, String file, String contentType, String payload, RequestListener listener) {
         super();
         this.listener = listener;
 
+        this.secure = secure;
         this.host = host;
         this.auth = auth;
         this.file = file;
@@ -40,11 +44,19 @@ public class AsyncRequestSender extends Thread {
         Socket socket;
         PrintWriter out;
         BufferedReader in;
-
         String line;
 
         try {
-            socket = new Socket(host, 80);
+            if (secure) {
+                sendLine("Opening secure socket");
+                SSLSocketFactory factory =
+                        (SSLSocketFactory)SSLSocketFactory.getDefault();
+                socket =
+                        (SSLSocket)factory.createSocket(host, 443);
+            }else {
+                sendLine("Opening socket");
+                socket = new Socket(host, 80);
+            }
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
@@ -89,6 +101,5 @@ public class AsyncRequestSender extends Thread {
             }
         });
     }
-
 
 }

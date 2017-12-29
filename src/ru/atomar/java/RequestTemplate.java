@@ -12,6 +12,7 @@ public class RequestTemplate {
 
     public String name;
     public String host;
+    public boolean secure;
     public String file;
     public String auth;
     public String contentType;
@@ -45,6 +46,7 @@ public class RequestTemplate {
                 name = "default";
                 auth = "";
                 host = "localhost";
+                secure = false;
                 file = "/";
                 contentType = "application/x-www-form-urlencoded";
                 payload = "";

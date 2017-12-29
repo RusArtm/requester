@@ -21,6 +21,7 @@ public class RequestWindow {
     TextArea mOutput;
     TextField mUrl;
     TextField mFile;
+    CheckBox mSecure;
     TextField mAuth;
     ComboBox<String> mContentType;
     TextArea mContent;
@@ -61,8 +62,12 @@ public class RequestWindow {
         label.setText("Res:");
         mFile = new TextField();
         mFile.setText("/");
-        mFile.setPrefWidth(561);
+        mFile.setPrefWidth(500);
         hBox.getChildren().addAll(label, mFile);
+
+        mSecure = new CheckBox("SSL");
+//        mSecure.setPrefWidth(40);
+        hBox.getChildren().add(mSecure);
         vBox.getChildren().add(hBox);
 
         hBox = new HBox();
@@ -107,7 +112,7 @@ public class RequestWindow {
         sendButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                AsyncRequestSender sender = new AsyncRequestSender(mUrl.getText(), mAuth.getText(), mFile.getText(), mContentType.getValue(), mContent.getText(), senderListener);
+                AsyncRequestSender sender = new AsyncRequestSender(mSecure.isSelected(), mUrl.getText(), mAuth.getText(), mFile.getText(), mContentType.getValue(), mContent.getText(), senderListener);
                 sender.start();
             }
         });
