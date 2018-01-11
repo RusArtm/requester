@@ -6,10 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="451b8fef-7956-4306-9b01-d1ce448415a7" name="Default" comment="https support">
+    <list default="true" id="451b8fef-7956-4306-9b01-d1ce448415a7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/atomar/java/AsyncRequestSender.java" afterPath="$PROJECT_DIR$/src/ru/atomar/java/AsyncRequestSender.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/atomar/java/Main.java" afterPath="$PROJECT_DIR$/src/ru/atomar/java/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/atomar/java/RequestWindow.java" afterPath="$PROJECT_DIR$/src/ru/atomar/java/RequestWindow.java" />
     </list>
     <ignored path="requester.iws" />
@@ -42,15 +41,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RequestWindow.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RequestWindow.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/atomar/java/RequestWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="116" column="60" lean-forward="false" selection-start-line="116" selection-start-column="60" selection-end-line="116" selection-end-column="60" />
+            <state relative-caret-position="347">
+              <caret line="102" column="32" lean-forward="false" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7605#7606#0" expanded="true" />
-                <element signature="e#7643#7644#0" expanded="true" />
+                <element signature="e#3792#4050#0" expanded="true" />
+                <element signature="e#4049#4050#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,12 +75,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AsyncRequestSender.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AsyncRequestSender.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/atomar/java/AsyncRequestSender.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="101" column="66" lean-forward="false" selection-start-line="101" selection-start-column="66" selection-end-line="101" selection-end-column="66" />
-              <folding />
+            <state relative-caret-position="442">
+              <caret line="34" column="37" lean-forward="true" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+              <folding>
+                <element signature="e#3000#3143#0" expanded="true" />
+                <element signature="e#3142#3143#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,6 +109,12 @@
       <find>mFile</find>
       <find>send&quot;</find>
       <find>sendLine</find>
+      <find>senderListener</find>
+      <find>POST</find>
+      <find>mMethod</find>
+      <find>.</find>
+      <find>mContentType</find>
+      <find>mContentType.</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -124,8 +132,8 @@
         <option value="$PROJECT_DIR$/src/ru/atomar/java/RequestTemplateList.java" />
         <option value="$PROJECT_DIR$/src/ru/atomar/java/RequestTemplate.java" />
         <option value="$PROJECT_DIR$/src/ru/atomar/java/Main.java" />
-        <option value="$PROJECT_DIR$/src/ru/atomar/java/RequestWindow.java" />
         <option value="$PROJECT_DIR$/src/ru/atomar/java/AsyncRequestSender.java" />
+        <option value="$PROJECT_DIR$/src/ru/atomar/java/RequestWindow.java" />
       </list>
     </option>
   </component>
@@ -150,6 +158,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -172,10 +184,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -453,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514523135562</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="request id added">
+      <created>1515649615485</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1515649615485</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -465,14 +480,14 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32979852" sideWeight="0.5073069" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32979852" sideWeight="0.496875" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32979852" sideWeight="0.4926931" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24895616" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24895616" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -503,7 +518,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="https support" />
-    <option name="LAST_COMMIT_MESSAGE" value="https support" />
+    <MESSAGE value="request id added" />
+    <option name="LAST_COMMIT_MESSAGE" value="request id added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -522,8 +538,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7605#7606#0" expanded="true" />
-            <element signature="e#7643#7644#0" expanded="true" />
+            <element signature="e#3792#4050#0" expanded="true" />
+            <element signature="e#4049#4050#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -548,7 +564,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1224">
           <caret line="78" column="18" lean-forward="true" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
-          <folding />
+          <folding>
+            <element signature="e#3000#3143#0" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -568,8 +587,8 @@
           <caret line="174" column="29" lean-forward="false" selection-start-line="174" selection-start-column="29" selection-end-line="174" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7605#7606#0" expanded="true" />
-            <element signature="e#7643#7644#0" expanded="true" />
+            <element signature="e#3792#4050#0" expanded="true" />
+            <element signature="e#4049#4050#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -594,7 +613,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="33" column="39" lean-forward="false" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
-          <folding />
+          <folding>
+            <element signature="e#3000#3143#0" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -614,8 +636,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7605#7606#0" expanded="true" />
-            <element signature="e#7643#7644#0" expanded="true" />
+            <element signature="e#3792#4050#0" expanded="true" />
+            <element signature="e#4049#4050#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -632,7 +654,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="33" column="39" lean-forward="false" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
-          <folding />
+          <folding>
+            <element signature="e#3000#3143#0" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -652,8 +677,8 @@
           <caret line="99" column="24" lean-forward="false" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7605#7606#0" expanded="true" />
-            <element signature="e#7643#7644#0" expanded="true" />
+            <element signature="e#3792#4050#0" expanded="true" />
+            <element signature="e#4049#4050#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -670,7 +695,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#3000#3143#0" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -690,8 +718,8 @@
           <caret line="99" column="24" lean-forward="false" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7605#7606#0" expanded="true" />
-            <element signature="e#7643#7644#0" expanded="true" />
+            <element signature="e#3792#4050#0" expanded="true" />
+            <element signature="e#4049#4050#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -708,7 +736,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#3000#3143#0" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -728,8 +759,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7605#7606#0" expanded="true" />
-            <element signature="e#7643#7644#0" expanded="true" />
+            <element signature="e#3792#4050#0" expanded="true" />
+            <element signature="e#4049#4050#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -746,7 +777,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="32" column="20" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="e#3000#3143#0" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -766,8 +800,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7605#7606#0" expanded="true" />
-            <element signature="e#7643#7644#0" expanded="true" />
+            <element signature="e#3792#4050#0" expanded="true" />
+            <element signature="e#4049#4050#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -784,7 +818,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
           <caret line="60" column="49" lean-forward="false" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="e#3000#3143#0" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -805,8 +842,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7605#7606#0" expanded="true" />
-            <element signature="e#7643#7644#0" expanded="true" />
+            <element signature="e#3792#4050#0" expanded="true" />
+            <element signature="e#4049#4050#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -823,7 +860,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
           <caret line="60" column="49" lean-forward="false" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="e#3000#3143#0" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -844,8 +884,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7605#7606#0" expanded="true" />
-            <element signature="e#7643#7644#0" expanded="true" />
+            <element signature="e#3792#4050#0" expanded="true" />
+            <element signature="e#4049#4050#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -862,7 +902,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
           <caret line="60" column="49" lean-forward="false" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="e#3000#3143#0" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -914,23 +957,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/atomar/java/RequestWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/atomar/java/AsyncRequestSender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="116" column="60" lean-forward="false" selection-start-line="116" selection-start-column="60" selection-end-line="116" selection-end-column="60" />
+        <state relative-caret-position="442">
+          <caret line="34" column="37" lean-forward="true" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7605#7606#0" expanded="true" />
-            <element signature="e#7643#7644#0" expanded="true" />
+            <element signature="e#3000#3143#0" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/atomar/java/AsyncRequestSender.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/atomar/java/RequestWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="101" column="66" lean-forward="false" selection-start-line="101" selection-start-column="66" selection-end-line="101" selection-end-column="66" />
-          <folding />
+        <state relative-caret-position="347">
+          <caret line="102" column="32" lean-forward="false" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3792#4050#0" expanded="true" />
+            <element signature="e#4049#4050#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

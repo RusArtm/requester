@@ -21,18 +21,18 @@ public class AsyncRequestSender extends Thread {
 
     RequestListener listener;
     boolean secure;
-    final int requestId;
     String host;
     String auth;
     String file;
     String contentType;
     String payload;
+    String methodName;
 
-    AsyncRequestSender(int requestId, boolean secure, String host, String auth, String file, String contentType, String payload, RequestListener listener) {
+    AsyncRequestSender(String methodName, boolean secure, String host, String auth, String file, String contentType, String payload, RequestListener listener) {
         super();
         this.listener = listener;
 
-        this.requestId = requestId;
+        this.methodName = methodName;
         this.secure = secure;
         this.host = host;
         this.auth = auth;
@@ -62,7 +62,7 @@ public class AsyncRequestSender extends Thread {
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            String request = "POST " + file + " HTTP/1.0 \n" +
+            String request = methodName + " " + file + " HTTP/1.0 \n" +
                     "Host: " + host + "\n" +
                     (auth.length() == 0 ? "" : "Authorization: " + auth + "\n") +
                     "Content-Type: " + contentType + "\n" +
@@ -99,7 +99,7 @@ public class AsyncRequestSender extends Thread {
         Application.invokeLater(new Runnable() {
             @Override
             public void run() {
-                listener.onNewLine("[" + String.valueOf(requestId) + "]" + line + "\n");
+                listener.onNewLine(line + "\n");
             }
         });
     }

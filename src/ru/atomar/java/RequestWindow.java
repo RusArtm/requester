@@ -24,22 +24,14 @@ public class RequestWindow {
     CheckBox mSecure;
     TextField mAuth;
     ComboBox<String> mContentType;
+    ComboBox<String> mMethod;
     TextArea mContent;
     RequestTemplate mTemplate;
     ComboBox<String> mTemplateCB;
-    AsyncRequestSender.RequestListener senderListener;
 
     int lastRequestId = 0;
 
     public RequestWindow() {
-
-        senderListener = new AsyncRequestSender.RequestListener() {
-            @Override
-            public void onNewLine(String line) {
-                mOutput.appendText(line);
-            }
-        };
-
         BorderPane mainPane = new BorderPane();
         Scene scene = new Scene(mainPane);
 
@@ -91,6 +83,7 @@ public class RequestWindow {
         label.setText("Content-type:");
         ObservableList<String> types =
                 FXCollections.observableArrayList(
+                        "text/html",
                         "application/json",
                         "application/x-www-form-urlencoded"
                 );
@@ -98,6 +91,18 @@ public class RequestWindow {
         mContentType.setPrefWidth(300);
         mContentType.setEditable(true);
         hBox.getChildren().addAll(label, mContentType);
+
+        label = new Label();
+        label.setText("Method:");
+        ObservableList<String> methodNames =
+                FXCollections.observableArrayList(
+                        "POST",
+                        "GET"
+                );
+        mMethod = new ComboBox<String>(methodNames);
+        mMethod.setPrefWidth(120);
+        mMethod.setEditable(false);
+        hBox.getChildren().addAll(label, mMethod);
         vBox.getChildren().add(hBox);
 
         label = new Label();
@@ -114,7 +119,15 @@ public class RequestWindow {
         sendButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                AsyncRequestSender sender = new AsyncRequestSender(getNewRequestId(), mSecure.isSelected(), mUrl.getText(), mAuth.getText(), mFile.getText(), mContentType.getValue(), mContent.getText(), senderListener);
+                final int requestId = getNewRequestId();
+                final TextArea output = mOutput;
+                AsyncRequestSender.RequestListener senderListener = new AsyncRequestSender.RequestListener() {
+                    @Override
+                    public void onNewLine(String line) {
+                        output.appendText("[" + String.valueOf(requestId) + "]" + line);
+                    }
+                };
+                AsyncRequestSender sender = new AsyncRequestSender(mMethod.getValue(), mSecure.isSelected(), mUrl.getText(), mAuth.getText(), mFile.getText(), mContentType.getValue(), mContent.getText(), senderListener);
                 sender.start();
             }
         });
@@ -222,6 +235,7 @@ public class RequestWindow {
         mFile.setText(mTemplate.file);
         mContentType.setValue(mTemplate.contentType);
         mContent.setText(mTemplate.payload);
+        mMethod.setValue(mMethod.getItems().get(0));
     }
 
     /**
