@@ -21,16 +21,18 @@ public class AsyncRequestSender extends Thread {
 
     RequestListener listener;
     boolean secure;
+    final int requestId;
     String host;
     String auth;
     String file;
     String contentType;
     String payload;
 
-    AsyncRequestSender(boolean secure, String host, String auth, String file, String contentType, String payload, RequestListener listener) {
+    AsyncRequestSender(int requestId, boolean secure, String host, String auth, String file, String contentType, String payload, RequestListener listener) {
         super();
         this.listener = listener;
 
+        this.requestId = requestId;
         this.secure = secure;
         this.host = host;
         this.auth = auth;
@@ -50,10 +52,10 @@ public class AsyncRequestSender extends Thread {
             if (secure) {
                 sendLine("Opening secure socket");
                 SSLSocketFactory factory =
-                        (SSLSocketFactory)SSLSocketFactory.getDefault();
+                        (SSLSocketFactory) SSLSocketFactory.getDefault();
                 socket =
-                        (SSLSocket)factory.createSocket(host, 443);
-            }else {
+                        (SSLSocket) factory.createSocket(host, 443);
+            } else {
                 sendLine("Opening socket");
                 socket = new Socket(host, 80);
             }
@@ -97,7 +99,7 @@ public class AsyncRequestSender extends Thread {
         Application.invokeLater(new Runnable() {
             @Override
             public void run() {
-                listener.onNewLine(line + "\n");
+                listener.onNewLine("[" + String.valueOf(requestId) + "]" + line + "\n");
             }
         });
     }

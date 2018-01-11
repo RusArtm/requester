@@ -1,6 +1,6 @@
 package ru.atomar.java;
 /**
- * Version 0.0.1 20171229
+ * Version 0.0.10 20180111
  */
 
 import javafx.application.Application;

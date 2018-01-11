@@ -29,6 +29,8 @@ public class RequestWindow {
     ComboBox<String> mTemplateCB;
     AsyncRequestSender.RequestListener senderListener;
 
+    int lastRequestId = 0;
+
     public RequestWindow() {
 
         senderListener = new AsyncRequestSender.RequestListener() {
@@ -112,7 +114,7 @@ public class RequestWindow {
         sendButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                AsyncRequestSender sender = new AsyncRequestSender(mSecure.isSelected(), mUrl.getText(), mAuth.getText(), mFile.getText(), mContentType.getValue(), mContent.getText(), senderListener);
+                AsyncRequestSender sender = new AsyncRequestSender(getNewRequestId(), mSecure.isSelected(), mUrl.getText(), mAuth.getText(), mFile.getText(), mContentType.getValue(), mContent.getText(), senderListener);
                 sender.start();
             }
         });
@@ -229,6 +231,10 @@ public class RequestWindow {
         mTemplate = new RequestTemplate(name, mUrl.getText(), mAuth.getText(), mFile.getText(), mContentType.getValue(), mContent.getText());
         mTemplate.save();
         refreshTemplateList(name);
+    }
+
+    private int getNewRequestId() {
+        return ++lastRequestId;
     }
 
 }
