@@ -2,13 +2,13 @@ package ru.atomar.java;
 
 import com.sun.glass.ui.Application;
 
-import javax.net.ssl.SSLSocket;
-import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.security.cert.X509Certificate;
 
 /**
  * Created by RusAr on 31.01.2017.
@@ -51,10 +51,26 @@ public class AsyncRequestSender extends Thread {
         try {
             if (secure) {
                 sendLine("Opening secure socket");
-                SSLSocketFactory factory =
-                        (SSLSocketFactory) SSLSocketFactory.getDefault();
-                socket =
-                        (SSLSocket) factory.createSocket(host, 443);
+
+                TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
+                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                        return null;
+                    }
+
+                    public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                    }
+
+                    public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                    }
+
+                }};
+                SSLContext sc = SSLContext.getInstance("SSL");
+                sc.init(null, trustAllCerts, new java.security.SecureRandom());
+                SSLSocketFactory factory = sc.getSocketFactory();
+
+//                SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+
+                socket = factory.createSocket(host, 443);
             } else {
                 sendLine("Opening socket");
                 socket = new Socket(host, 80);
@@ -85,7 +101,7 @@ public class AsyncRequestSender extends Thread {
             in.close();
             socket.close();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             sendLine("======================= ERROR =======================");
             sendLine(e.toString());
         }

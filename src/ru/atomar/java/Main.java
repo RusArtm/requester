@@ -1,12 +1,11 @@
 package ru.atomar.java;
-/**
- * Version 0.0.10 20180111
- */
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+    private static final String version = "Version 0.0.11 20180209";
 
     public static void main(String[] args) {
         launch(args);
@@ -14,6 +13,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        RequestWindow window = new RequestWindow();
+        RequestWindow window = new RequestWindow(version);
     }
 }

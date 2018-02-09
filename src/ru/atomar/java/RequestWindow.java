@@ -31,7 +31,7 @@ public class RequestWindow {
 
     int lastRequestId = 0;
 
-    public RequestWindow() {
+    public RequestWindow(String version) {
         BorderPane mainPane = new BorderPane();
         Scene scene = new Scene(mainPane);
 
@@ -211,7 +211,7 @@ public class RequestWindow {
 
         mStage = new Stage();
         mStage.setScene(scene);
-        mStage.setTitle("Requester. Send HTTP 1 Request easily.");
+        mStage.setTitle("Requester. Send HTTP 1 Request easily. " + version);
         mStage.setMinWidth(860);
 
         mStage.show();
