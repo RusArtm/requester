@@ -119,20 +119,31 @@ public class RequestWindow {
         sendButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                final int requestId = getNewRequestId();
-                final TextArea output = mOutput;
-                AsyncRequestSender.RequestListener senderListener = new AsyncRequestSender.RequestListener() {
-                    @Override
-                    public void onNewLine(String line) {
-                        output.appendText("[" + String.valueOf(requestId) + "]" + line);
-                    }
-                };
-                AsyncRequestSender sender = new AsyncRequestSender(mMethod.getValue(), mSecure.isSelected(), mUrl.getText(), mAuth.getText(), mFile.getText(), mContentType.getValue(), mContent.getText(), senderListener);
-                sender.start();
+                sendRequest(new RequestParams(
+                        mMethod.getValue(),
+                        mSecure.isSelected(),
+                        mUrl.getText(),
+                        mAuth.getText(),
+                        mFile.getText(),
+                        mContentType.getValue(),
+                        mContent.getText()
+                ));
             }
         });
         sendButton.setPadding(new Insets(4, 4, 4, 4));
         hBox.getChildren().add(sendButton);
+
+        Button sendContentOnlyButton = new Button("Send content as request");
+        sendContentOnlyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                RequestParams params = new RequestParams();
+                params.request = mContent.getText();
+                sendRequest(params);
+            }
+        });
+        sendContentOnlyButton.setPadding(new Insets(4, 4, 4, 4));
+        hBox.getChildren().add(sendContentOnlyButton);
 
         button = new Button("Clear");
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -215,6 +226,23 @@ public class RequestWindow {
         mStage.setMinWidth(860);
 
         mStage.show();
+    }
+
+    private void sendRequest(RequestParams params) {
+        final int requestId = getNewRequestId();
+        final TextArea output = mOutput;
+        AsyncRequestSender.RequestListener senderListener = new AsyncRequestSender.RequestListener() {
+            @Override
+            public void onNewLine(String line) {
+                output.appendText("[" + String.valueOf(requestId) + "]" + line);
+            }
+        };
+
+        AsyncRequestSender sender = new AsyncRequestSender(
+                params,
+                senderListener
+        );
+        sender.start();
     }
 
     private void refreshTemplateList(final String current) {

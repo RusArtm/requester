@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private static final String version = "Version 0.0.11 20180209";
+    private static final String version = "Version 0.0.12 20180321";
 
     public static void main(String[] args) {
         launch(args);

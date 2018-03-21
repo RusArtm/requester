@@ -4,7 +4,6 @@ import com.sun.glass.ui.Application;
 
 import javax.net.ssl.*;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -20,25 +19,12 @@ public class AsyncRequestSender extends Thread {
     }
 
     RequestListener listener;
-    boolean secure;
-    String host;
-    String auth;
-    String file;
-    String contentType;
-    String payload;
-    String methodName;
+    RequestParams mParams;
 
-    AsyncRequestSender(String methodName, boolean secure, String host, String auth, String file, String contentType, String payload, RequestListener listener) {
+    AsyncRequestSender(RequestParams params, RequestListener listener) {
         super();
         this.listener = listener;
-
-        this.methodName = methodName;
-        this.secure = secure;
-        this.host = host;
-        this.auth = auth;
-        this.file = file;
-        this.contentType = contentType;
-        this.payload = payload;
+        this.mParams = params;
     }
 
     @Override
@@ -49,7 +35,7 @@ public class AsyncRequestSender extends Thread {
         String line;
 
         try {
-            if (secure) {
+            if (mParams.secure) {
                 sendLine("Opening secure socket");
 
                 TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
@@ -70,26 +56,33 @@ public class AsyncRequestSender extends Thread {
 
 //                SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
 
-                socket = factory.createSocket(host, 443);
+                socket = factory.createSocket(mParams.host, 443);
             } else {
                 sendLine("Opening socket");
-                socket = new Socket(host, 80);
+                socket = new Socket(mParams.host, 80);
             }
-            out = new PrintWriter(socket.getOutputStream(), true);
+            out = new PrintWriter(socket.getOutputStream(), false);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            String request = methodName + " " + file + " HTTP/1.0 \n" +
-                    "Host: " + host + "\n" +
-                    (auth.length() == 0 ? "" : "Authorization: " + auth + "\n") +
-                    "Content-Type: " + contentType + "\n" +
-                    "Content-Length: " + String.valueOf(payload.length()) + "\n" +
-                    "\n" +
-                    payload;
+            String request;
+            if (mParams.request != null)
+                request = mParams.request;
+            else
+                request = mParams.methodName + " " + mParams.file + " HTTP/1.0\n" +
+                        "Host: " + mParams.host + "\n" +
+                        (mParams.auth.length() == 0 ? "" : "Authorization: " + mParams.auth + "\n") +
+                        "Content-Type: " + mParams.contentType + "\n" +
+                        "Content-Length: " + String.valueOf(mParams.payload.length()) + "\n" +
+                        "\n" +
+                        mParams.payload;
+
+            String[] requestLines = request.split("\\r?\\n", -1);
 
             sendLine("======================= REQUEST =======================");
-            sendLine(request);
-
-            out.write(request);
+            for (String requestLine : requestLines) {
+                out.println(requestLine);
+                sendLine(requestLine);
+            }
             out.flush();
 
             sendLine("======================= RESPONSE =======================");
